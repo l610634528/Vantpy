@@ -7,9 +7,9 @@ from utils.config import Config
 
 class get_login_token:
     c = Config()
-    username = c.get_case_data('login').get('username')
-    password = c.get_case_data('login').get('password')
-    p = c.get_case_data('login').get('face_url')
+    username = c.get('login').get('username')
+    password = c.get('login').get('password')
+    p = c.get('login').get('face_url')
 
     def login_token(self):
         postdata = {"UserName": self.username, "PassWd": self.password, "pattern": None}
@@ -22,6 +22,7 @@ class get_login_token:
             return token_dict["access_token"]
         else:
             return False
+
 
 if __name__ == '__main__':
     c = get_login_token()

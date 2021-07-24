@@ -94,7 +94,7 @@ class BasePage(object):
             raise
 
     def clear(self, loc):
-        '''输入文本框清空操作'''
+        """输入文本框清空操作"""
         element = self.find_element(*loc)
         try:
             element.clear()
@@ -104,12 +104,12 @@ class BasePage(object):
             self.get_screent_img(ne)
 
     def move_to_element(self, loc):
-        '''
+        """
         鼠标悬停操作
         Usage:
         element = ("id","xxx")
         driver.move_to_element(element)
-        '''
+        """
         element = self.find_element(*loc)
         ActionChains(self.driver).move_to_element(element).perform()
 

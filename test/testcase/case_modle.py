@@ -3,6 +3,7 @@
 import unittest
 from test.common.BrowserDriver import BrowserDriver
 
+
 class model(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -11,13 +12,16 @@ class model(unittest.TestCase):
         driver = BrowserDriver(cls)
         cls.driver = driver.openbrowser(cls)
 
-
-    def setUp(self):
-        pass
-
-    def teardown(self):
-        pass
+    # def setUp(self):
+    #     pass
+    #
+    # def teardown(self):
+    #     pass
 
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()
+
+
+if __name__ == '__main__':
+    unittest.main()

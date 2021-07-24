@@ -5,17 +5,19 @@ import sys
 import time
 import unittest
 import sys
-sys.path.append('../')
-from report.HTMLTestRunner3 import HTMLTestRunner
 
-def create_suite():
+sys.path.append('../')
+from report.HTMLTestRunner import HTMLTestRunner
+
+
+def create_suite(rule='test*.py'):
     TestSuite = unittest.TestSuite()  # 测试集
     test_dir = './test/testcase'
     # print(test_dir)
 
     discover = unittest.defaultTestLoader.discover(
         start_dir=test_dir,
-        pattern='test_login.py',
+        pattern=rule,
         top_level_dir=None
     )
 
@@ -24,6 +26,7 @@ def create_suite():
         # print(test_case)
     return TestSuite
 
+
 def report():
     if len(sys.argv) > 1:
         report_name = os.path.dirname(os.getcwd()) + '\\report\\' + sys.argv[1] + '_result.html'
@@ -31,11 +34,10 @@ def report():
     else:
         now = time.strftime("%Y-%m-%d_%H_%M_%S_")
         # 需要查看每段时间的测试报告，可以这样写：
-        # report_name = os.getcwd() + '\\report\\'+now+'result.html'
-        report_name = './report/result.html'
+        report_name = os.getcwd() + '\\report\\'+now+'result.html'
+        # report_name = './report/result.html'
         print(report_name)
     return report_name
-
 
 
 if __name__ == '__main__':
@@ -48,4 +50,3 @@ if __name__ == '__main__':
     )
     Runner.run(TestSuite)
     fp.close()
-

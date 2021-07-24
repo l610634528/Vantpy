@@ -49,6 +49,7 @@ class ExcelReader:
     ExcelReader(excel, sheet=2)
     ExcelReader(excel, sheet='BaiDuTest')
     """
+
     def __init__(self, excel, sheet=0, title_line=True):
         if os.path.exists(excel):
             self.excel = excel
@@ -80,8 +81,7 @@ class ExcelReader:
                     self._data.append(s.row_values(col))
         return self._data
 
-
 # if __name__ == '__main__':
-    # y = 'browser.yaml'
-    # reader = YamlReader(y)
-    # print(reader.data)
+# y = 'browser.yaml'
+# reader = YamlReader(y)
+# print(reader.data)

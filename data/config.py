@@ -15,6 +15,7 @@ __author__ = 'klook'
 import configparser
 import os
 
+
 class Config:
     def __init__(self):
         BASE_PATH = os.path.split(os.path.dirname(os.path.abspath(__file__)))[0]
@@ -22,13 +23,14 @@ class Config:
         self.config = configparser.ConfigParser()
         self.config.read(CONFIG_FILE)
 
-    def get(self,filename,key):
-        conf = self.config.get(filename,key)
+    def get(self, filename, key):
+        conf = self.config.get(filename, key)
         return conf
 
     def path(self):
         BASE_PATH = os.path.split(os.path.dirname(os.path.abspath(__file__)))[0]
         return BASE_PATH
+
 
 if __name__ == '__main__':
     c = Config()

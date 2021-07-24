@@ -7,22 +7,23 @@ from selenium import webdriver
 from utils.logger import Logger
 from selenium.webdriver.chrome.options import Options
 from data.config import Config
-
+from utils.config import DRIVER_PATH
 logger = Logger(logger="BrowserDriver").getlog()
 
+
 class BrowserDriver(object):
-    path = './drivers/'#这是获取相对路径的方法
+    path = './drivers/'  # 这是获取相对路径的方法
     chrome_driver_path = path + 'chromedriver.exe'
     ie_driver_path = path + '/driver/IEDriverServer.exe'
 
-    def __init__(self,driver):
+    def __init__(self, driver):
         self.driver = driver
         self.c = Config()
 
-    def openbrowser(self,driver):
-        browser = self.c.get("browserType","browserName")
+    def openbrowser(self, driver):
+        browser = self.c.get("browserType", "browserName")
         logger.info("选择的浏览器为: %s 浏览器" % browser)
-        url = self.c.get('ptahUrl',"URL")
+        url = self.c.get('ptahUrl', "URL")
         logger.info("打开的URL为: %s" % url)
         if browser == "Firefox":
             driver = webdriver.Firefox()
@@ -37,7 +38,7 @@ class BrowserDriver(object):
             chrome_options.add_argument('--headless')  # 浏览器不提供可视化页面. linux下如果系统不支持可视化不加这条会启动失败
             chrome_options.add_argument('--disable-extensions')
             chrome_options.add_argument('lang=zh_CN.UTF-8')
-            driver = webdriver.Chrome(options=chrome_options)
+            driver = webdriver.Chrome(DRIVER_PATH)
 
             # driver = webdriver.Chrome(self.c.driver_ptah()) #用于Windows系统加载驱动使用
 
@@ -55,4 +56,3 @@ class BrowserDriver(object):
     def quit_browser(self):
         logger.info("关闭浏览器")
         self.driver.quit()
-
