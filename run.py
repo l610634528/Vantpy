@@ -5,8 +5,6 @@ import sys
 import time
 import unittest
 import sys
-
-sys.path.append('../')
 from report.HTMLTestRunner import HTMLTestRunner
 
 
@@ -34,7 +32,7 @@ def report():
     else:
         now = time.strftime("%Y-%m-%d_%H_%M_%S_")
         # 需要查看每段时间的测试报告，可以这样写：
-        report_name = os.getcwd() + '\\report\\'+now+'result.html'
+        report_name = os.getcwd() + '\\report\\' + now + 'result.html'
         # report_name = './report/result.html'
         print(report_name)
     return report_name

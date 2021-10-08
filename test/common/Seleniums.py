@@ -58,7 +58,7 @@ class BasePage(object):
             raise
 
     def get_screent_img(self, value):
-        '''将页面截图下来'''
+        """将页面截图下来"""
         file_path = './report/screenshot/'
         image_path = self.conf.path()
         now = time.strftime("%Y-%m-%d_%H_%M_%S_")

@@ -10,6 +10,8 @@ class Atmospheric_grid(BasePage):
     password = (By.XPATH, "//input[@placeholder='密码']")
     button = (By.XPATH, "//span[@class='el-checkbox__inner']")
     login = (By.XPATH, "//button[@class='mgt']")
+    environment_look = (By.XPATH, "//ul[@class='el-menu el-menu--horizontal el-menu--dark']/li[2]/div")
+
     def input_Atmospheric_grid_account(self, text):
         self.send_key(self.account, text)
 
