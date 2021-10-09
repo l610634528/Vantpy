@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from test.common.Seleniums import BasePage
-
+from time import sleep
 
 class Atmospheric_grid(BasePage):
     """
@@ -20,4 +20,5 @@ class Atmospheric_grid(BasePage):
 
     def click_remember_button(self):
         self.click(self.button)
+        sleep(2)
         self.click(self.login)

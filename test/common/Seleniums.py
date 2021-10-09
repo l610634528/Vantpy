@@ -61,7 +61,7 @@ class BasePage(object):
         """将页面截图下来"""
         file_path = './report/screenshot/'
         image_path = self.conf.path()
-        now = time.strftime("%Y-%m-%d_%H_%M_%S_")
+        # now = time.strftime("%Y-%m-%d_%H_%M_%S_")
         screen_name = image_path + value + '.png'
         try:
             self.driver.get_screenshot_as_file(screen_name)
@@ -148,50 +148,50 @@ class BasePage(object):
         self.driver.quit()
 
     def get_title(self):
-        '''获取title'''
+        """获取title"""
         return self.driver.title
 
     def get_text(self, loc):
-        '''获取文本'''
+        """获取文本"""
         element = self.find_element(*loc)
         return element.text
 
     def get_attribute(self, loc, name):
-        '''获取属性'''
+        """获取属性"""
         element = self.find_element(*loc)
         return element.get_attribute(name)
 
     def js_execute(self, js):
-        '''执行js'''
+        """执行js"""
         return self.driver.execute_script(js)
 
     def js_focus_element(self, loc):
-        '''聚焦元素'''
+        """聚焦元素"""
         target = self.find_element(*loc)
         self.driver.execute_script("arguments[0].scrollIntoView();", target)
 
     def js_scroll_top(self):
-        '''滚动到顶部'''
+        """滚动到顶部"""
         js = "window.scrollTo(0,0)"
         self.driver.execute_script(js)
 
     def js_scroll_end(self):
-        '''滚动到底部'''
+        """滚动到底部"""
         js = "window.scrollTo(0,document.body.scrollHeight)"
         self.driver.execute_script(js)
 
     def select_by_index(self, loc, index):
-        '''通过索引,index是索引第几个，从0开始'''
+        """通过索引,index是索引第几个，从0开始"""
         element = self.find_element(*loc)
         Select(element).select_by_index(index)
 
     def select_by_value(self, loc, value):
-        '''通过value属性'''
+        """通过value属性"""
         element = self.find_element(*loc)
         Select(element).select_by_value(value)
 
     def select_by_text(self, loc, text):
-        '''通过文本值定位'''
+        """通过文本值定位"""
         element = self.find_element(*loc)
         Select(element).select_by_value(text)
 
@@ -206,10 +206,10 @@ class BasePage(object):
             return result
 
     def is_text_in_value(self, loc, value, timeout=10):
-        '''
+        """
         判断元素的value值，没定位到元素返回false,定位到返回判断结果布尔值
         result = driver.text_in_element(element, text)
-        '''
+        """
         try:
             result = WebDriverWait(self.driver, timeout, 1).until(
                 EC.text_to_be_present_in_element_value(loc, value))
@@ -220,62 +220,62 @@ class BasePage(object):
             return result
 
     def is_title(self, title, timeout=10):
-        '''判断title完全等于'''
+        """判断title完全等于"""
         result = WebDriverWait(self.driver, timeout, 1).until(EC.title_is(title))
         return result
 
     def is_title_contains(self, title, timeout=10):
-        '''判断title包含'''
+        """判断title包含"""
         result = WebDriverWait(self.driver, timeout, 1).until(EC.title_contains(title))
         return result
 
     def is_selected(self, loc, timeout=10):
-        '''判断元素被选中，返回布尔值,'''
+        """判断元素被选中，返回布尔值,"""
         result = WebDriverWait(self.driver, timeout, 1).until(EC.element_located_to_be_selected(loc))
         return result
 
     def is_selected_be(self, loc, selected=True, timeout=10):
-        '''判断元素的状态，selected是期望的参数true/False
-        返回布尔值'''
+        """判断元素的状态，selected是期望的参数true/False
+        返回布尔值"""
         result = WebDriverWait(self.driver, timeout, 1).until(EC.element_located_selection_state_to_be(loc, selected))
         return result
 
     def is_alert_present(self, timeout=10):
-        '''判断页面是否有alert，
+        """判断页面是否有alert，
         有返回alert(注意这里是返回alert,不是True)
-        没有返回False'''
+        没有返回False"""
         result = WebDriverWait(self.driver, timeout, 1).until(EC.alert_is_present())
         return result
 
     def is_visibility(self, loc, timeout=10):
-        '''元素可见返回本身，不可见返回Fasle'''
+        """元素可见返回本身，不可见返回Fasle"""
         result = WebDriverWait(self.driver, timeout, 1).until(EC.visibility_of_element_located(loc))
         return result
 
     def is_invisibility(self, loc, timeout=10):
-        '''元素可见返回本身，不可见返回True，没找到元素也返回True'''
+        """元素可见返回本身，不可见返回True，没找到元素也返回True"""
         result = WebDriverWait(self.driver, timeout, 1).until(EC.invisibility_of_element_located(loc))
         return result
 
     def is_clickable(self, loc, timeout=10):
-        '''元素可以点击is_enabled返回本身，不可点击返回Fasle'''
+        """元素可以点击is_enabled返回本身，不可点击返回Fasle"""
         result = WebDriverWait(self.driver, timeout, 1).until(EC.element_to_be_clickable(loc))
         return result
 
     def is_located(self, loc, timeout=10):
-        '''判断元素有没被定位到（并不意味着可见），定位到返回element,没定位到返回False'''
+        """判断元素有没被定位到（并不意味着可见），定位到返回element,没定位到返回False"""
         result = WebDriverWait(self.driver, timeout, 1).until(EC.presence_of_element_located(loc))
         return result
 
     def click_alert(self):
-        '''操作点击弹窗'''
+        """操作点击弹窗"""
         alert = self.driver.switch_to.alert
         time.sleep(2)
         alert.accept()
         time.sleep(2)
 
     def alert_text(self):
-        '''返回弹窗的文本内容'''
+        """返回弹窗的文本内容"""
         alert = self.driver.switch_to.alert()
         rel = alert.text()
         return rel
