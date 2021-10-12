@@ -1,8 +1,3 @@
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
-# @Author  : Vant
-# @Email   : 944921374@qq.com
-
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
 from selenium.common.exceptions import *  # 导入所有的异常类
@@ -248,7 +243,7 @@ class BasePage(object):
         return result
 
     def is_visibility(self, loc, timeout=10):
-        """元素可见返回本身，不可见返回Fasle"""
+        """元素可见返回本身，不可见返回False"""
         result = WebDriverWait(self.driver, timeout, 1).until(EC.visibility_of_element_located(loc))
         return result
 

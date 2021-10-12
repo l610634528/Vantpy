@@ -11,14 +11,18 @@ BASE_PATH = os.path.split(os.path.dirname(os.path.abspath(__file__)))[0]
 CONFIG_FILE = os.path.join(BASE_PATH, 'data', 'browser.yaml')
 
 ELEMENT_PATH = os.path.join(BASE_PATH, 'data', 'elements.yaml')
-# CASE_PATH = os.path.join(BASE_PATH,'data','testcase.yaml')
-# INTERFACE_PATH = os.path.join(BASE_PATH,'data','interface.yaml')
-# DATA_PATH = os.path.join(BASE_PATH, 'data')
+CASE_PATH = os.path.join(BASE_PATH, 'data', 'testcase.yaml')
+INTERFACE_PATH = os.path.join(BASE_PATH, 'data', 'interface.yaml')
+DATA_PATH = os.path.join(BASE_PATH, 'data')
 DRIVER_PATH = os.path.join(BASE_PATH, 'drivers', 'chromedriver.exe')
 
+
 class Config:
-    def __init__(self, config=CONFIG_FILE):
+    def __init__(self, config=CONFIG_FILE, elements=ELEMENT_PATH, case_data=CASE_PATH, interface_data=INTERFACE_PATH, ):
         self.config = YamlReader(config).data
+        self.elements = YamlReader(elements).data
+        self.case_data = YamlReader(case_data).data
+        self.interface_data = YamlReader(interface_data).data
 
     def get(self, element, index=0):
         """
@@ -27,29 +31,29 @@ class Config:
         """
         return self.config[index].get(element)
 
+    def get_ele(self, element, index=0):
+        return self.elements[index].get(element)
 
-#     def get_ele(self,element,index = 0):
-#         return self.elements[index].get(element)
-#
-#     def get_case_data(self,element,index = 0):
-#         return self.case_data[index].get(element)
-#
-#     def get_inter_data(self,element,index = 0):
-#         return self.interface_data[index].get(element)
-#
-#     def exe_data(self):
-#         return self.exe_ptah
-#
-#     def driver_ptah(self):
-#         return self.driver_pt
-#
-#     def screen_shot_path(self):
-#         return self.screen_shot
-#
-#     def get_excel(self,file_name):
-#         file_pt = self.excel_pt+"%s.xlsx"%file_name
-#         return file_pt
-# #
+    def get_case_data(self, element, index=0):
+        return self.case_data[index].get(element)
+
+    def get_inter_data(self, element, index=0):
+        return self.interface_data[index].get(element)
+
+    # def exe_data(self):
+    #     return self.exe_ptah
+    #
+    # def driver_ptah(self):
+    #     return self.driver_pt
+    #
+    # def screen_shot_path(self):
+    #     return self.screen_shot
+    #
+    # def get_excel(self, file_name):
+    #     file_pt = self.excel_pt + "%s.xlsx" % file_name
+    #     return file_pt
+
+
 if __name__ == '__main__':
     c = Config()
     print(c.get("brwserType").get("browserName"))
