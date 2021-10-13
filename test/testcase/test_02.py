@@ -43,12 +43,24 @@ class Atmospheric(model):
         # 设备MN号获取信息
         Atmospheric_.click_MN()
         MN = Atmospheric_.find_element(Atmospheric_.MN_number_information)
-        MN_title = MN.text
-        self.assertEqual("1111111", MN)
+        MN_text = MN.text
+        self.assertEqual("1111111", MN_text)
 
     def test_06(self):
         Atmospheric_ = Atmospheric_grid(self.driver)
+        # GPS坐标获取
+        Atmospheric_.click_GPS_got()
+        GPS_longitude = Atmospheric_.find_element(Atmospheric_.longitude)
+        GPS_longitude_text = GPS_longitude.text
+        self.assertEqual("3011.424294,N", GPS_longitude_text)
 
+    def test_07(self):
+        Atmospheric_ = Atmospheric_grid(self.driver)
+        # 仪器属性选择PM10
+        Atmospheric_.click_instrument()
+        instrument = Atmospheric_.find_element(Atmospheric_.instrument)
+        instrument_text = instrument.text
+        self.assertEqual("PM10", instrument_text)
 
 
 if __name__ == '__main__':

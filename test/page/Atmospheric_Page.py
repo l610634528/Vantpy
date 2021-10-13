@@ -32,6 +32,19 @@ class Atmospheric_grid(BasePage):
     # SIM卡
     SIM_number_get = (By.XPATH, "//div[@class='context']/div/div[2]/div[2]/div/form/div[3]/div/button/span")
     SIM_number = (By.XPATH, "//div[@class='context']/div/div[2]/div[2]/div/form/div/div/div/input")
+    # 仪器GPS坐标
+    GPS_longitude_got = (By.XPATH, "//div[@class='context']/div/div[3]/div/div/form/div[4]/div/button/span")
+    longitude = (By.XPATH, "//div[@class='context']/div/div[3]/div/div/form/div/div/div/input")
+    # 仪器属性
+    instrument = (By.XPATH, "//div[@class='context']/div/div[3]/div[2]/div/form/div/div/div/input")
+    PM10 = (By.XPATH, "//div[@x-placement='bottom-start']/div/div/ul/li")
+    # 仪器属性点击
+    def click_instrument(self):
+        self.click(self.instrument)
+        sleep(2)
+        self.click(self.PM10)
+        sleep(2)
+
     def input_Atmospheric_grid_account(self, text):
         self.send_key(self.account, text)
 
@@ -71,5 +84,8 @@ class Atmospheric_grid(BasePage):
         self.click(self.SIM_number_get)
         sleep(2)
 
-
+    # GPS坐标获取
+    def click_GPS_got(self):
+        self.click(self.GPS_longitude_got)
+        sleep(2)
 
