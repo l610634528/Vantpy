@@ -62,6 +62,22 @@ class Atmospheric(model):
         instrument_text = instrument.text
         self.assertEqual("PM10", instrument_text)
 
+    def test_08(self):
+        Atmospheric_ = Atmospheric_grid(self.driver)
+        # 浓度显示填写后设置
+        Atmospheric_.send_key_concentration("15")
+        Atmospheric_.click_concentration_set_up()
+        concentration = Atmospheric_.find_element(Atmospheric_.concentration_display)
+        concentration_text = concentration.text
+        self.assertEqual("15", concentration_text)
+
+    def test_09(self):
+        Atmospheric_ = Atmospheric_grid(self.driver)
+        # 滤膜长度
+        Atmospheric_.click_Filter_membrane()
+        Filter_membrane_text = Atmospheric_.find_element(Atmospheric_.Filter_membrane_text).text
+        self.assertEqual("2950", Filter_membrane_text)
+
 
 if __name__ == '__main__':
     pass

@@ -24,20 +24,39 @@ class Atmospheric_grid(BasePage):
     # 参数配置
     Parameter_configuration = (By.XPATH, "//div[@class='el-table__body-wrapper']/table/tbody/tr/td[12]/div/button[3]")
     # 设备信息-仪器IP信息-获取
-    context_information = (By.XPATH, "//div[@class='context']/div/div/div/div/form/div[2]/div/button/span")
-    IP_information = (By.XPATH, "//div[@class='context']/div/div/div/div/form/div/div/div")
+    context_information = (By.XPATH, "//div[@class='content']/div/div/div/div/form/div[2]/div/button/span")
+    IP_information = (By.XPATH, "//div[@class='content']/div/div/div/div/form/div/div/div")
     # 设备MN号-获取
-    MN_number = (By.XPATH, "//div[@class='context']/div/div[2]/div/div/form/div[3]/div/button/span")
-    MN_number_information = (By.XPATH, "//div[@class='context']/div/div[2]/div/div/form/div/div/div/input")
+    MN_number = (By.XPATH, "//div[@class='content']/div/div[2]/div/div/form/div[3]/div/button/span")
+    MN_number_information = (By.XPATH, "//div[@class='content']/div/div[2]/div/div/form/div/div/div/input")
     # SIM卡
-    SIM_number_get = (By.XPATH, "//div[@class='context']/div/div[2]/div[2]/div/form/div[3]/div/button/span")
-    SIM_number = (By.XPATH, "//div[@class='context']/div/div[2]/div[2]/div/form/div/div/div/input")
+    SIM_number_get = (By.XPATH, "//div[@class='content']/div/div[2]/div[2]/div/form/div[3]/div/button/span")
+    SIM_number = (By.XPATH, "//div[@class='content']/div/div[2]/div[2]/div/form/div/div/div/input")
     # 仪器GPS坐标
-    GPS_longitude_got = (By.XPATH, "//div[@class='context']/div/div[3]/div/div/form/div[4]/div/button/span")
-    longitude = (By.XPATH, "//div[@class='context']/div/div[3]/div/div/form/div/div/div/input")
+    GPS_longitude_got = (By.XPATH, "//div[@class='content']/div/div[3]/div/div/form/div[4]/div/button/span")
+    longitude = (By.XPATH, "//div[@class='content']/div/div[3]/div/div/form/div/div/div/input")
     # 仪器属性
-    instrument = (By.XPATH, "//div[@class='context']/div/div[3]/div[2]/div/form/div/div/div/input")
+    instrument = (By.XPATH, "//div[@class='content']/div/div[3]/div[2]/div/form/div/div/div/input")
     PM10 = (By.XPATH, "//div[@x-placement='bottom-start']/div/div/ul/li")
+    # 浓度显示间隔
+    concentration_display = (By.XPATH, "//div[@class='content']/div/div[4]/div/div/form/div/div/div/input")
+    concentration_set_up = (By.XPATH, "//div[@class='content']/div/div[4]/div/div/form/div[2]/div/button[2]")
+    # 滤膜长度-获取
+    Filter_membrane = (By.XPATH, "//div[@class='content']/div/div[5]/div[2]/div/form/div[4]/div/button")
+    Filter_membrane_text = (By.XPATH, "//div[@class='content']/div/div[5]/div[2]/div/form/div/div/div/input")
+    # 滤膜长度获取
+    def click_Filter_membrane(self):
+        self.click(self.Filter_membrane)
+        sleep(2)
+
+    # 浓度显示输入，设置
+    def send_key_concentration(self, text):
+        self.send_key(self.concentration_display, text)
+
+    def click_concentration_set_up(self):
+        self.click(self.concentration_set_up)
+        sleep(6)
+
     # 仪器属性点击
     def click_instrument(self):
         self.click(self.instrument)
@@ -45,6 +64,7 @@ class Atmospheric_grid(BasePage):
         self.click(self.PM10)
         sleep(2)
 
+    # 系统登录
     def input_Atmospheric_grid_account(self, text):
         self.send_key(self.account, text)
 
@@ -88,4 +108,3 @@ class Atmospheric_grid(BasePage):
     def click_GPS_got(self):
         self.click(self.GPS_longitude_got)
         sleep(2)
-
