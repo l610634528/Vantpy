@@ -44,6 +44,14 @@ class Atmospheric_grid(BasePage):
     # 滤膜长度-获取
     Filter_membrane = (By.XPATH, "//div[@class='content']/div/div[5]/div[2]/div/form/div[4]/div/button")
     Filter_membrane_text = (By.XPATH, "//div[@class='content']/div/div[5]/div[2]/div/form/div/div/div/input")
+    # 滤膜余量参数-获取
+    Membrane_margin = (By.XPATH, "//div[@class='content']/div/div[5]/div/div/form/div[4]/div/button")
+    Membrane_margin_days = (By.XPATH, "//div[@class='content']/div/div[5]/div/div/form/div[3]/div/div/input")
+    # 滤膜余量参数-获取
+    def get_membrane_margin(self):
+        self.click(self.Membrane_margin)
+        sleep(2)
+
     # 滤膜长度获取
     def click_Filter_membrane(self):
         self.click(self.Filter_membrane)
