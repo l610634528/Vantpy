@@ -68,15 +68,22 @@ class Atmospheric(model):
         Atmospheric_.send_key_concentration("15")
         Atmospheric_.click_concentration_set_up()
         concentration = Atmospheric_.find_element(Atmospheric_.concentration_display)
-        concentration_text = concentration.text
+        concentration_text = str(concentration.text)
         self.assertEqual("15", concentration_text)
 
     def test_09(self):
         Atmospheric_ = Atmospheric_grid(self.driver)
         # 滤膜长度
         Atmospheric_.click_Filter_membrane()
-        Filter_membrane_text = Atmospheric_.find_element(Atmospheric_.Filter_membrane_text).text
+        Filter_membrane_text = str(Atmospheric_.find_element(Atmospheric_.Filter_membrane_text).text)
         self.assertEqual("2950", Filter_membrane_text)
+
+    def test_10(self):
+        Atmospheric_ = Atmospheric_grid(self.driver)
+        # 滤膜余量参数
+        Atmospheric_.get_membrane_margin()
+        Membrane_margin_days = str(Atmospheric_.find_element(Atmospheric_.Membrane_margin_days).text)
+        self.assertEqual("10", Membrane_margin_days)
 
 
 if __name__ == '__main__':
